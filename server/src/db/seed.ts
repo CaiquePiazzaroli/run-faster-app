@@ -14,6 +14,12 @@ await seed(db, schema).refine((f) => {
 				created_at: f.timestamp(),
 			},
 		},
+		runs: {
+			count: 20,
+			columns: {
+				distance: f.number({ minValue: 0, maxValue: 40 }),
+			},
+		},
 	};
 });
 

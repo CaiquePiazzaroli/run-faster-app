@@ -1,0 +1,1 @@
+ALTER TABLE "runs" ADD COLUMN "date" timestamp DEFAULT now() NOT NULL;
