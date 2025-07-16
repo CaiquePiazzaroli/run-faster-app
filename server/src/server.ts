@@ -1,3 +1,4 @@
+import cors from "@fastify/cors";
 import Fastify from "fastify";
 import {
 	serializerCompiler,
@@ -9,6 +10,10 @@ import { createUsersRoute } from "./http/routes/post-users.ts";
 
 const fastify = Fastify({
 	logger: false,
+});
+
+await fastify.register(cors, {
+	origin: "http://localhost:5173",
 });
 
 fastify.setValidatorCompiler(validatorCompiler);
