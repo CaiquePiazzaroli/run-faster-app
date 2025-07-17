@@ -8,5 +8,8 @@ POST http://localhost:3000/users
 content-type: application/json
 
 {
-    "name": "Caique Kevin Mendes"
+    "name": "Caique Kevin Mendes",
+    "email": "caique405@gmail.com",
+    "password": "1234caique",
+    "longest_race": 10
 }

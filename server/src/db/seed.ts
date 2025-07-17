@@ -10,6 +10,8 @@ await seed(db, schema).refine((f) => {
 			count: 20,
 			columns: {
 				name: f.firstName(),
+				email: f.email(),
+				password: f.string(),
 				longest_race: f.number({ minValue: 1, maxValue: 100 }),
 				created_at: f.timestamp(),
 			},

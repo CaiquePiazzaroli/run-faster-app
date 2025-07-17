@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "node --env-file=.env --experimental-strip-types --watch ./src/server.ts",
     "db:test": "node --env-file=.env --experimental-strip-types ./test/db/test.ts",
-    "db:seed": "node --env-file=.env --experimental-strip-types ./src/db/seed.ts"
+    "db:seed": "node --env-file=.env --experimental-strip-types ./src/db/seed.ts",
+    "db:reset": "node --env-file=.env --experimental-strip-types ./src/db/reset.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@biomejs/biome": "2.1.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^24.0.13",
     "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.4",
@@ -23,6 +25,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.0.1",
+    "bcrypt": "^6.0.0",
     "drizzle-orm": "^0.44.3",
     "drizzle-seed": "^0.3.1",
     "fastify": "^5.4.0",

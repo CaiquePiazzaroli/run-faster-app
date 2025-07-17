@@ -8,6 +8,7 @@ export const getUsers: FastifyPluginCallbackZod = (fastify) => {
 			.select({
 				id: schema.users.id,
 				name: schema.users.name,
+				email: schema.users.email,
 			})
 			.from(schema.users);
 

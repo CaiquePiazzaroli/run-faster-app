@@ -9,6 +9,8 @@ import {
 export const users = pgTable("users", {
 	id: uuid().primaryKey().defaultRandom(),
 	name: text().notNull(),
+	email: text().unique().notNull(),
+	password: text().notNull(),
 	longest_race: doublePrecision(),
 	created_at: timestamp().defaultNow().notNull(),
 });
