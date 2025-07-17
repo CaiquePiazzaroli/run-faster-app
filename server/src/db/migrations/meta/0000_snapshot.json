@@ -1,11 +1,11 @@
 {
-  "id": "b0004e3c-e4d4-4c74-a7b9-8a083427c9b8",
+  "id": "29eb4339-d02e-456f-a7ef-24f2f70ff2e5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.runs": {
-      "name": "runs",
+    "public.races": {
+      "name": "races",
       "schema": "",
       "columns": {
         "id": {
@@ -20,17 +20,17 @@
           "primaryKey": false,
           "notNull": true
         },
-        "start_time": {
-          "name": "start_time",
-          "type": "time",
+        "race_time": {
+          "name": "race_time",
+          "type": "interval",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "end_time": {
-          "name": "end_time",
-          "type": "time",
+        "distance": {
+          "name": "distance",
+          "type": "double precision",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "date": {
           "name": "date",
@@ -38,19 +38,13 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
-        },
-        "distance": {
-          "name": "distance",
-          "type": "double precision",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "runs_user_id_users_id_fk": {
-          "name": "runs_user_id_users_id_fk",
-          "tableFrom": "runs",
+        "races_user_id_users_id_fk": {
+          "name": "races_user_id_users_id_fk",
+          "tableFrom": "races",
           "tableTo": "users",
           "columnsFrom": [
             "user_id"

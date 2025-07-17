@@ -1,10 +1,9 @@
-CREATE TABLE "runs" (
+CREATE TABLE "races" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"user_id" uuid NOT NULL,
-	"start_time" time,
-	"end_time" time,
-	"date" timestamp DEFAULT now() NOT NULL,
-	"distance" double precision
+	"race_time" interval NOT NULL,
+	"distance" double precision NOT NULL,
+	"date" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
@@ -17,4 +16,4 @@ CREATE TABLE "users" (
 	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-ALTER TABLE "runs" ADD CONSTRAINT "runs_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;
+ALTER TABLE "races" ADD CONSTRAINT "races_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;

@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import { eq } from "drizzle-orm";
 import type { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 import z from "zod";
 import { db } from "../../db/connection.ts";
@@ -10,32 +11,40 @@ export const createUsersRoute: FastifyPluginCallbackZod = (fastify) => {
 		{
 			schema: {
 				body: z.object({
-					name: z.string().min(6).default("unknow"),
-					email: z.string().default("email@email.com"),
-					password: z.string().default("1234"),
-					longest_race: z.float32().min(0.0).default(0.0),
+					name: z.string().min(6),
+					email: z.string(),
+					password: z.string(),
+					longest_race: z.float32().default(0.0),
 				}),
 			},
 		},
 		async (request, reply) => {
-			const userData = {
-				name: request.body.name,
-				email: request.body.email,
-				password: bcrypt.hashSync(request.body.password, 10),
-				longest_race: request.body.longest_race,
-			};
+			try {
+				const fetchUserExistence = await db
+					.select({ email: schema.users.email })
+					.from(schema.users)
+					.where(eq(schema.users.email, request.body.email));
 
-			const result = await db
-				.insert(schema.users)
-				.values(userData)
-				.returning({ insertedId: schema.users.id });
+				if (fetchUserExistence.length > 0) {
+					throw new Error("User alredy exists!");
+				}
 
-			const insertedUser = result[0];
+				const userData = {
+					name: request.body.name,
+					email: request.body.email,
+					password: bcrypt.hashSync(request.body.password, 10),
+					longest_race: request.body.longest_race,
+				};
 
-			if (!insertedUser) {
-				throw new Error("Failed to create new user.");
+				const result = await db
+					.insert(schema.users)
+					.values(userData)
+					.returning({ userId: schema.users.id });
+				const insertedUserId = result[0];
+				return reply.status(201).send(insertedUserId);
+			} catch (err) {
+				return reply.status(400).send(err);
 			}
-			return reply.status(201).send({ userId: insertedUser.insertedId });
 		}
 	);
 };

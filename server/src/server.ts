@@ -6,6 +6,7 @@ import {
 } from "fastify-type-provider-zod";
 import { env } from "./env.ts";
 import { getUsers } from "./http/routes/get-users.ts";
+import { login } from "./http/routes/login.ts";
 import { createUsersRoute } from "./http/routes/post-users.ts";
 
 const fastify = Fastify({
@@ -23,6 +24,7 @@ fastify.get("/health", () => {
 	return "OK";
 });
 
+fastify.register(login);
 fastify.register(getUsers);
 fastify.register(createUsersRoute);
 
