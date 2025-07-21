@@ -10,9 +10,12 @@ export function signToken(id: string) {
 }
 
 export function verifyToken(token: string) {
-	const payload = jwt.verify(token, env.SECRET_KEY);
-
-	console.log(payload);
-
-	return payload;
+	try {
+		return jwt.verify(token, env.SECRET_KEY);
+	} catch (err) {
+		if (err instanceof jwt.TokenExpiredError) {
+			throw new Error("The token has expired");
+		}
+		throw new Error("Invalid token");
+	}
 }

@@ -1,25 +1,29 @@
-
+### Login And Get Token
 POST http://localhost:3000/login
 content-type: application/json
 
 {
-    "email": "caique405@gmail.com",
-    "password": "1234caique"
+    "email": "admin@email.com",
+    "password": "standard4499"
 }
 
-
-###
-
+### Get Users
 GET http://localhost:3000/users
+Authorization: token <YOUR-API-KEY>
 
-###
+### Get User data from a user
+GET http://localhost:3000/users/f22929fd-4882-4c29-a51d-0075f4f30cbf
+Authorization: token <YOUR-API-KEY>
 
+
+### POST USERS
 POST http://localhost:3000/users
 content-type: application/json
+Authorization: token <YOUR-API-KEY>
 
 {
-"name": "Caique Kevin Mendes",
-"email": "caique405@gmail.com",
-"password": "1234caique",
+"name": "New User Name Example",
+"email": "newUser@gmail.com",
+"password": "1234NewUser069",
 "longest_race": 10
 }

@@ -5,9 +5,10 @@ import {
 	validatorCompiler,
 } from "fastify-type-provider-zod";
 import { env } from "./env.ts";
-import { getUsers } from "./http/routes/get-users.ts";
-import { login } from "./http/routes/login.ts";
-import { createUsersRoute } from "./http/routes/post-users.ts";
+import { getUserData } from "./http/routes/protected/get-user-data.ts";
+import { getUsers } from "./http/routes/protected/get-users.ts";
+import { createUsersRoute } from "./http/routes/protected/post-users.ts";
+import { auth } from "./http/routes/public/auth.ts";
 
 const fastify = Fastify({
 	logger: false,
@@ -24,8 +25,9 @@ fastify.get("/health", () => {
 	return "OK";
 });
 
-fastify.register(login);
+fastify.register(auth);
 fastify.register(getUsers);
+fastify.register(getUserData);
 fastify.register(createUsersRoute);
 
 fastify.listen({ port: env.PORT });

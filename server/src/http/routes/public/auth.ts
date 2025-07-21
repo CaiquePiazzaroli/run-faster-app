@@ -2,11 +2,11 @@ import bcrypt from "bcrypt";
 import { eq } from "drizzle-orm";
 import type { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 import z from "zod";
-import { signToken, verifyToken } from "../../auth/authentication.ts";
-import { db } from "../../db/connection.ts";
-import { schema } from "../../db/schema/index.ts";
+import { signToken } from "../../../auth/authentication.ts";
+import { db } from "../../../db/connection.ts";
+import { schema } from "../../../db/schema/index.ts";
 
-export const login: FastifyPluginCallbackZod = (fastify) => {
+export const auth: FastifyPluginCallbackZod = (fastify) => {
 	fastify.post(
 		"/login",
 		{
@@ -37,8 +37,6 @@ export const login: FastifyPluginCallbackZod = (fastify) => {
 				const userId = userData[0].id;
 
 				const token = await signToken(userId);
-
-				verifyToken(token.token);
 
 				return reply.send(token);
 			} catch (err) {
