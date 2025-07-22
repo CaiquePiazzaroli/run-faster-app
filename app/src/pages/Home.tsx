@@ -6,19 +6,33 @@ type userSchema = {
 };
 
 export default function Home() {
-  const query = useQuery({
-    queryKey: ["id"],
+  const { data: users, isLoading } = useQuery({
+    queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:3000/users").then((res) => res.json()),
+      fetch("http://localhost:3000/users", {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: "token <API-KEY>",
+        },
+      }).then((res) => res.json()),
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!Array.isArray(users)) {
+    return window.alert(users.message);
+  }
 
   return (
     <div>
       <h1>Users of System</h1>
       <ul>
-        {query.data?.map((user: userSchema) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
+        {users?.map((user: userSchema) => {
+          return <li key={user.id}>{user.name}</li>;
+        })}
       </ul>
     </div>
   );
