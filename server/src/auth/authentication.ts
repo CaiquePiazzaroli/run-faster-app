@@ -5,7 +5,7 @@ export function signToken(id: string) {
 	const payload = {
 		idUser: id,
 	};
-	const tokenUser = jwt.sign(payload, env.SECRET_KEY, { expiresIn: "1h" });
+	const tokenUser = jwt.sign(payload, env.SECRET_KEY, { expiresIn: "10s" });
 	return { token: tokenUser };
 }
 
