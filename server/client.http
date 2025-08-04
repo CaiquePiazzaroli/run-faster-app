@@ -3,13 +3,13 @@ POST http://localhost:3000/login
 content-type: application/json
 
 {
-    "email": "admin@email.com",
+    "email": "admin@email.co",
     "password": "standard4499"
 }
 
 ### Get Users
 GET http://localhost:3000/users
-Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI0MTRlZDc5OS1mNDBmLTQ1MDAtOGRhNS00YzUzZmFkNGQ3YTEiLCJpYXQiOjE3NTMzNzg1ODcsImV4cCI6MTc1MzM4MjE4N30.j2GZfwDDfvYGrYiVQcgDOT2csidrrVOhYyozyK-tdWk
+Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI0MTRlZDc5OS1mNDBmLTQ1MDAtOGRhNS00YzUzZmFkNGQ3YTEiLCJpYXQiOjE3NTQwNTk5MjQsImV4cCI6MTc1NDA2MzUyNH0.I82Kv8ziYUUfsXwnJmjEELcQamCTqCZdOHxNvCq6VzY
 
 ### Get User data from a user
 GET http://localhost:3000/users/f22929fd-4882-4c29-a51d-0075f4f30cbf

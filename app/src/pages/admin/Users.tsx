@@ -32,7 +32,7 @@ export default function Users() {
   }
 
   return (
-    <div className="m-auto max-w-md py-20">
+    <main className="p-2">
       <h1>Users of System</h1>
       <ul>
         {users?.map((user: userSchema) => {
@@ -48,6 +48,6 @@ export default function Users() {
           );
         })}
       </ul>
-    </div>
+    </main>
   );
 }
