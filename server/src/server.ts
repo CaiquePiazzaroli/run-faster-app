@@ -5,6 +5,7 @@ import {
 	validatorCompiler,
 } from "fastify-type-provider-zod";
 import { env } from "./env.ts";
+import { getRaces } from "./http/routes/protected/get-races.ts";
 import { getUserData } from "./http/routes/protected/get-user-data.ts";
 import { getUsers } from "./http/routes/protected/get-users.ts";
 import { createUsersRoute } from "./http/routes/protected/post-users.ts";
@@ -29,5 +30,6 @@ fastify.register(auth);
 fastify.register(getUsers);
 fastify.register(getUserData);
 fastify.register(createUsersRoute);
+fastify.register(getRaces);
 
 fastify.listen({ port: env.PORT });

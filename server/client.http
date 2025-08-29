@@ -26,3 +26,7 @@ Authorization: token <YOUR-API-TOKEN>
 "password": "1234NewUser069",
 "longest_race": 10
 }
+
+###GET RACES
+GET http://localhost:3000/races
+Authorization: token <YOUR-API-TOKEN>
