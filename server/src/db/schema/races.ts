@@ -8,7 +8,7 @@ import {
 import { users } from "./users.ts";
 
 export const races = pgTable("races", {
-	id: uuid().primaryKey(),
+	id: uuid().primaryKey().defaultRandom(),
 	user_id: uuid()
 		.references(() => users.id)
 		.notNull(),

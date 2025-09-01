@@ -30,3 +30,14 @@ Authorization: token <YOUR-API-TOKEN>
 ###GET RACES
 GET http://localhost:3000/races
 Authorization: token <YOUR-API-TOKEN>
+
+###POST RACES
+POST http://localhost:3000/races
+Content-Type: application/json
+Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIwZTQ3OTVjMS0zYmY3LTRjYzctODcwMC04M2EwNGM5ODA4OTciLCJpYXQiOjE3NTY3NTA4MTUsImV4cCI6MTc1Njc1NDQxNX0.boucBXbr1JTBSV9QX7toEeGu3W0iuBTNnxm0v7RPAkA
+
+{
+  "race_time": "00:30:00",
+  "distance": 8,
+  "date": "2025-08-29"
+}

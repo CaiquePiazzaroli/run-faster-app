@@ -8,6 +8,13 @@
       "when": 1752762827828,
       "tag": "0000_acoustic_maddog",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1756753027923,
+      "tag": "0001_striped_sharon_carter",
+      "breakpoints": true
     }
   ]
 }
