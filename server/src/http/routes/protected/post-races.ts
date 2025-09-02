@@ -40,7 +40,7 @@ export const createPostsRoute: FastifyPluginCallbackZod = (fastify) => {
 
 				return reply.status(200).send(result);
 			} catch (err) {
-				return err;
+				return reply.status(401).send(err);
 			}
 		}
 	);

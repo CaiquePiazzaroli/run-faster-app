@@ -1,43 +1,58 @@
-### Login And Get Token
-POST http://localhost:3000/login
-content-type: application/json
+###########################################
+#             USER AUTHENTICATION         #
+###########################################
+
+### REGISTER A NEW USER
+POST http://localhost:3000/register
+Content-Type: application/json
 
 {
-    "email": "admin@email.com",
-    "password": "standard4499"
+  "name": "New User Name Example",
+  "email": "newUser@gmail.com",
+  "password": "1234NewUser069",
+  "longest_race": 10
 }
 
-### Get Users
+### LOGIN AND GET TOKEN
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "admin@email.com",
+  "password": "standard4499"
+}
+
+###########################################
+#               USER ENDPOINTS            #
+###########################################
+
+### GET USER DATA BY ID
+GET http://localhost:3000/user/profile
+Authorization: token <YOUR-API-TOKEN>
+
+### GET ALL USERS (ADMIN ONLY)
 GET http://localhost:3000/users
 Authorization: token <YOUR-API-TOKEN>
 
-### Get User data from a user
-GET http://localhost:3000/users/<ID-USER>
+###########################################
+#              RACES ENDPOINTS            #
+###########################################
+
+### GET DATA FROM USER RACES
+GET http://localhost:3000/user/races
 Authorization: token <YOUR-API-TOKEN>
 
-### POST USERS
-POST http://localhost:3000/users
-content-type: application/json
-Authorization: token <YOUR-API-TOKEN>
-
-{
-"name": "New User Name Example",
-"email": "newUser@gmail.com",
-"password": "1234NewUser069",
-"longest_race": 10
-}
-
-###GET RACES
-GET http://localhost:3000/races
-Authorization: token <YOUR-API-TOKEN>
-
-###POST RACES
+### POST A RACE FOR A USER
 POST http://localhost:3000/races
 Content-Type: application/json
-Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIwZTQ3OTVjMS0zYmY3LTRjYzctODcwMC04M2EwNGM5ODA4OTciLCJpYXQiOjE3NTY3NTA4MTUsImV4cCI6MTc1Njc1NDQxNX0.boucBXbr1JTBSV9QX7toEeGu3W0iuBTNnxm0v7RPAkA
+Authorization: token <YOUR-API-TOKEN>
 
 {
   "race_time": "00:30:00",
   "distance": 8,
   "date": "2025-08-29"
 }
+
+### GET ALL RACES (ADMIN ONLY)
+GET http://localhost:3000/races
+Authorization: token <YOUR-API-TOKEN>

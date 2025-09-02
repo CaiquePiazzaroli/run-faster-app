@@ -7,10 +7,11 @@ import {
 import { env } from "./env.ts";
 import { getRaces } from "./http/routes/protected/get-races.ts";
 import { getUserData } from "./http/routes/protected/get-user-data.ts";
+import { getUserRacesRoute } from "./http/routes/protected/get-user-races.ts";
 import { getUsers } from "./http/routes/protected/get-users.ts";
 import { createPostsRoute } from "./http/routes/protected/post-races.ts";
-import { createUsersRoute } from "./http/routes/protected/post-users.ts";
-import { auth } from "./http/routes/public/auth.ts";
+import { auth } from "./http/routes/public/post-user-login.ts";
+import { createUsersRoute } from "./http/routes/public/post-users.ts";
 
 const fastify = Fastify({
 	logger: false,
@@ -33,5 +34,6 @@ fastify.register(getUserData);
 fastify.register(createUsersRoute);
 fastify.register(getRaces);
 fastify.register(createPostsRoute);
+fastify.register(getUserRacesRoute);
 
 fastify.listen({ port: env.PORT });

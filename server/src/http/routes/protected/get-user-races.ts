@@ -1,13 +1,14 @@
-import type { FastifyPluginCallback } from "fastify";
+import { eq } from "drizzle-orm";
+import type { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
+import type { JwtPayload } from "jsonwebtoken";
 import z from "zod";
 import { verifyToken } from "../../../auth/authentication.ts";
 import { db } from "../../../db/connection.ts";
 import { schema } from "../../../db/schema/index.ts";
 
-//SELECT * FROM races
-export const getRaces: FastifyPluginCallback = (fastify) => {
+export const getUserRacesRoute: FastifyPluginCallbackZod = (fastify) => {
 	fastify.get(
-		"/races",
+		"/user/races",
 		{
 			schema: {
 				headers: z.object({
@@ -23,8 +24,11 @@ export const getRaces: FastifyPluginCallback = (fastify) => {
 			const token = authHeader.split(" ")[1];
 
 			try {
-				verifyToken(token); //const decodedToken = verifytoken(token) for get iduser
-				const result = await db.select().from(schema.races);
+				const decodedToken = verifyToken(token) as JwtPayload;
+				const result = await db
+					.select()
+					.from(schema.races)
+					.where(eq(schema.races.user_id, decodedToken.idUser));
 				return reply.status(200).send(result);
 			} catch (err) {
 				return reply.status(401).send(err);

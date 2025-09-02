@@ -2,18 +2,14 @@ import bcrypt from "bcrypt";
 import { eq } from "drizzle-orm";
 import type { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 import z from "zod";
-import { verifyToken } from "../../../auth/authentication.ts";
 import { db } from "../../../db/connection.ts";
 import { schema } from "../../../db/schema/index.ts";
 
 export const createUsersRoute: FastifyPluginCallbackZod = (fastify) => {
 	fastify.post(
-		"/users",
+		"/register",
 		{
 			schema: {
-				headers: z.object({
-					authorization: z.string(),
-				}),
 				body: z.object({
 					name: z.string().min(6),
 					email: z.string(),
@@ -23,11 +19,7 @@ export const createUsersRoute: FastifyPluginCallbackZod = (fastify) => {
 			},
 		},
 		async (request, reply) => {
-			const splitAuthArray = request.headers.authorization.split(" ");
-			const token = splitAuthArray[1];
 			try {
-				verifyToken(token);
-
 				const fetchUserExistence = await db
 					.select({ email: schema.users.email })
 					.from(schema.users)
