@@ -41,7 +41,12 @@ export default function LoginForm() {
       </div>
       <div>
         <label htmlFor="password">password</label>
-        <input id="password" name="password" type="password" onInput={handleInput}/>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          onInput={handleInput}
+        />
       </div>
       <div>
         <button name="submit" type="submit">
