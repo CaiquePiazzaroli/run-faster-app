@@ -17,8 +17,9 @@ const fastify = Fastify({
 	logger: false,
 });
 
+//frontend
 await fastify.register(cors, {
-	origin: "http://localhost:5173",
+	origin: `http://localhost:5173`,
 });
 
 fastify.setValidatorCompiler(validatorCompiler);

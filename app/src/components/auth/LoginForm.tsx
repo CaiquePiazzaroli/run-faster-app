@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from "react";
+import { useNavigate } from "react-router";
 
 type formDataType = {
   email: string;
@@ -6,15 +7,16 @@ type formDataType = {
 };
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   } as formDataType);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    fetch("http://localhost:3000/login", {
+    const  res = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,9 +25,16 @@ export default function LoginForm() {
         email: formData.email,
         password: formData.password,
       }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+    });
+
+    if (res.status !== 200) {
+      return window.alert("Inválid login");
+    }
+
+    const json = await res.json();
+    localStorage.setItem("token", json.token);
+
+    navigate("/user/profile");
   }
 
   function handleInput(event: FormEvent<HTMLInputElement>): void {
