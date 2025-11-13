@@ -28,7 +28,7 @@ Content-Type: application/json
 
 ### GET USER DATA BY ID
 GET http://localhost:3000/user/profile
-Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI4NjM5NDc0NS02OTVlLTQ0YTAtODBlOS03MjY3NTA1NDJjYzQiLCJpYXQiOjE3NjI5OTkzMDksImV4cCI6MTc2MzAwMjkwOX0.qkasqx53LZcjYArQUGVsGKMpCcq6ztXbcCKl-A0VEwQ
+Authorization: token <YOUR-API-TOKEN>
 
 
 ### GET ALL USERS (ADMIN ONLY)
@@ -41,7 +41,7 @@ Authorization: token <YOUR-API-TOKEN>
 
 ### GET DATA FROM USER RACES
 GET http://localhost:3000/user/races
-Authorization: token eyJhbGciOiJIUzINiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI4NjM5NDc0NS02OTVlLTQ0YTAtODBlOS03MjY3NTA1NDJjYzQiLCJpYXQiOjE3NjI5OTgyNzIsImV4cCI6MTc2MzAwMTg3Mn0.4hmo2zZ0xj0ghX-yCm9TiO43yjblUQpC2SCBYv6V81E
+Authorization: token <YOUR-API-TOKEN>
 
 ### POST A RACE FOR A USER
 POST http://localhost:3000/races
