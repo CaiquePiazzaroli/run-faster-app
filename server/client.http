@@ -2,6 +2,14 @@
 #             USER AUTHENTICATION         #
 ###########################################
 
+### API TEST
+GET http://localhost:3000/health
+
+
+###########################################
+#             USER AUTHENTICATION         #
+###########################################
+
 ### REGISTER A NEW USER
 POST http://localhost:3000/register
 Content-Type: application/json

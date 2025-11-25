@@ -37,4 +37,4 @@ fastify.register(getRaces);
 fastify.register(createPostsRoute);
 fastify.register(getUserRacesRoute);
 
-fastify.listen({ port: env.PORT });
+fastify.listen({ port: env.PORT, host: "0.0.0.0" });
