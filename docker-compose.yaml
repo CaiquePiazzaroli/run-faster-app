@@ -6,6 +6,14 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    command: sh -c "npx drizzle-kit migrate && npm run db:seed && npm run dev"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
   db:
     image: postgres
     restart: always
@@ -16,6 +24,10 @@ services:
       - db-data:/etc/data
     ports:
       - "5432:5432"
-
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 volumes:
  db-data:
