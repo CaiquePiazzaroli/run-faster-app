@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --env-file=.env --experimental-strip-types --watch ./src/server.ts",
+    "container:dev": "node --experimental-strip-types --watch ./src/server.ts",
     "db:test": "node --env-file=.env --experimental-strip-types ./test/db/test.ts",
     "db:seed": "node --env-file=.env --experimental-strip-types ./src/db/seed.ts",
     "db:reset": "node --env-file=.env --experimental-strip-types ./src/db/reset.ts"

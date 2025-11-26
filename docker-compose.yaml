@@ -3,12 +3,15 @@ services:
     build:
       context: ./server
       dockerfile: dockerfile
+    environment:
+      PORT: 3000
+      DATABASE_URL: "postgresql://<username>:<password>@<db-service-or-ip>:<port>/<db-name>"
+      SECRET_KEY: "<YOUR-SECRET-FOR-TOKEN-GENERATION>"
     restart: always
     ports:
       - "3000:3000"
     depends_on:
       - db
-    command: sh -c "npx drizzle-kit migrate && npm run db:seed && npm run dev"
     deploy:
       resources:
         limits:
