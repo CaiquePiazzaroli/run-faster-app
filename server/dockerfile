@@ -1,5 +1,5 @@
 ## Baixar a imagem do node
-FROM node:22
+FROM node:lts-slim as builder
 
 ## Definir o dirétório de trabalho
 WORKDIR /server
@@ -7,8 +7,12 @@ WORKDIR /server
 ## Copiar o package.json e package-lock.json
 COPY ./package.json package-lock.json* .
 
+
+## Instala as dependencias
+RUN npm install
+
 ## Copiar o restante do projeto
 COPY . .
 
 ## Roda api e faz migrations no banco de dados
-CMD ["sh", "-c", "npm install && npx drizzle-kit migrate && npm run db:seed && npm run dev"]
+CMD ["sh", "-c", "npx drizzle-kit migrate && npm run db:seed && npm run container:dev"]
