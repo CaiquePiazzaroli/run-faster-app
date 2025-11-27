@@ -5,8 +5,8 @@ services:
       dockerfile: dockerfile
     environment:
       PORT: 3000
-      DATABASE_URL: "postgresql://<username>:<password>@<db-service-or-ip>:<port>/<db-name>"
-      SECRET_KEY: "<YOUR-SECRET-FOR-TOKEN-GENERATION>"
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/postgres"
+      SECRET_KEY: "043c9e944194fcad449b69d93d2c73164b25148382ba88c067f6fa7ca7dd2ea8"
     restart: always
     ports:
       - "3000:3000"

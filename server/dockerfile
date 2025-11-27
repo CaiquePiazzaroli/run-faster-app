@@ -1,5 +1,5 @@
 ## Baixar a imagem do node
-FROM node:lts-slim as builder
+FROM node:lts-slim
 
 ## Definir o dirétório de trabalho
 WORKDIR /server
