@@ -1,18 +1,18 @@
+version: '3.7'
+
 services:
   server:
-    build:
-      context: ./server
-      dockerfile: dockerfile
+    image: caiquepiazz/run-faster-api:latest
     environment:
       PORT: 3000
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/postgres"
-      SECRET_KEY: "043c9e944194fcad449b69d93d2c73164b25148382ba88c067f6fa7ca7dd2ea8"
-    restart: always
+      SECRET_KEY: "043c9e9e44194fcad449b69d93d2c73164b25148382ba88c067f6fa7ca7dd2ea8"
     ports:
       - "3000:3000"
     depends_on:
       - db
     deploy:
+      replicas: 3
       resources:
         limits:
           cpus: "0.5"
@@ -32,5 +32,17 @@ services:
         limits:
           cpus: "0.5"
           memory: 512M
+  visualizer:
+    image: dockersamples/visualizer:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      # O Visualizer precisa ser executado em um nó que tenha o Docker Swarm manager.
+      # Para garantir que ele funcione, usei o constraint (restrição).
+      placement:
+        constraints:
+          - node.role == manager
 volumes:
- db-data:
+  db-data:
